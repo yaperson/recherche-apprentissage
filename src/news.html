@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/style.css">
-    <link rel="stylesheet" href="style/home.css">
+    <link rel="stylesheet" href="style/news.css">
     <title>Document</title>
 </head>
 <body>
@@ -17,8 +17,19 @@
         </nav>
       </header>
     <main>
-        <div class="main__title">
-            <h3>Recherche d'apprentissage</h3>
+        <div class="head__container">
+          <div class="main__title">
+            <h3>Mon avancement</h3>
+            <div class="vaisseau__container">
+              <img class="vaisseau-spatial" id="vaisseau-spatial" src="/images/vaisseau-spatial.png" alt="vaisseau spatial">
+            </div>
+          </div>
+        </div>
+
+        <div class="content">
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue. Ut in risus volutpat libero pharetra tempor. Cras vestibulum bibendum augue. Praesent egestas leo in pede. Praesent blandit odio eu enim. Pellentesque sed dui ut augue blandit sodales. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam nibh. Mauris ac mauris sed pede pellentesque fermentum. Maecenas adipiscing ante non diam sodales hendrerit.
+          </p>
         </div>
     </main>
     <footer>
@@ -29,5 +40,13 @@
        </nav>
       </footer>
 </body>
-<script src="script/script.js" type="text/javascript"></script>
+<script type="text/javascript">
+  // effet parallax
+  let vaisseau = document.getElementById("vaisseau-spatial");
+  window.addEventListener('scroll', function(){
+    var value = window.scrollY;
+
+    vaisseau.style.top = value * -1 + 'px';
+  })
+</script>
 </html>

@@ -1,0 +1,42 @@
+.head__container {
+    display: flex;
+    justify-content: center;
+}
+
+.main__title{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+}
+
+.vaisseau__container {
+    display: flex;
+    justify-content: center;
+}
+
+h3{
+    font-size: 5rem;
+}
+
+.vaisseau-spatial {
+    max-width: 300px;
+}
+#vaisseau-spatial {
+    top: 0px;
+}
+
+@media screen and (max-width: 750px) {
+    main{
+        max-width: 100%;
+    }
+    .main__title{
+        font-size: 42px;
+    }
+    h3{
+        font-size: 42px;
+    }
+    #target{
+        font-size: 50px;
+    }
+}
