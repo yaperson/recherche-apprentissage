@@ -6,6 +6,8 @@ use Monolog\Handler\StreamHandler;
 use Twig\Loader\FilesystemLoader;
 use Twig\Environment;
 use App\Classes\Manager\ApprentissageManager;
+use App\Classes\Manager\UserManager;
+use App\Classes\Entity\User;
 
 $logger = new Logger('main');
 
@@ -21,15 +23,16 @@ $error = '';
 
 require_once("conf.php");
 
-session_cache_expire(10);
 session_start();
-
-if ($_SESSION['connecter'] = TRUE) {
+if ((isset($_SESSION['connecter'] )) && ($_SESSION['connecter'] == true)) {
     try {
         $db = new PDO($dsn, $usr, $pwd);
         $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
         $ApprentissageManager = new ApprentissageManager($db);
-        
+        $UserManager = new UserManager($db);
+
+        $user = $UserManager->getOne();
+        var_dump($user);
         $apprentissage = $ApprentissageManager->getList();
 
     } catch(PDOException $e) {
@@ -38,10 +41,11 @@ if ($_SESSION['connecter'] = TRUE) {
     echo $twig->render('apprentissageList.html.twig', [
         'title' => 'Liste des opportunités',
         'apprentissages' => $apprentissage,
+        'user' => $user,
         'error' => $error,
         ]
     );
 } else {
     header("connect.php");
-    session_abort();
+    session_destroy();
 }

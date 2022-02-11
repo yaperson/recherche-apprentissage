@@ -1,6 +1,4 @@
 <?php
-session_start();
-
 require_once '../vendor/autoload.php';
 
 use Monolog\Logger;
@@ -23,23 +21,29 @@ $error = '';
 
 require_once("conf.php");
 
-try {
-    if (isset($_POST['email'])&&(isset($_POST['password']))){
-        $db = new PDO($dsn, $usr, $pwd);
-        $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-        $newuser = new UserManager($db);
-        $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-        $newuser->addUser($_POST['email'], $password);
-        header('Location: connect.php');
+session_start();
+if ((isset($_SESSION['connecter'] )) && ($_SESSION['connecter'] == true)) {
+    try {
+        if (isset($_POST['email'])&&(isset($_POST['password']))){
+            $db = new PDO($dsn, $usr, $pwd);
+            $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+            $newuser = new UserManager($db);
+            $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+            $newuser->addUser($_POST['email'], $password);
+            header('Location: connect.php');
+        }
+    } catch(PDOException $e) {
+        print('erreur de connection : ' . $e->getMessage());
     }
-} catch(PDOException $e) {
-    print('erreur de connection : ' . $e->getMessage());
+    echo $twig->render('addUser.html.twig', [
+        'title' => 'Nouvel utilisateur',
+        'error' => $error,
+        ]
+    );    
+} else {
+    header("connect.php");
+    session_destroy();
 }
-echo $twig->render('addUser.html.twig', [
-    'title' => 'Nouvel utilisateur',
-    'error' => $error,
-    ]
-);    
 
 ?>
 

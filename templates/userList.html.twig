@@ -31,7 +31,11 @@
             </tr>
             <tr>
             {% for user in users %}
-               <tr><th>{{ user._id }}</th> <th>{{ user._email }}</th></tr>
+                <tr>
+                    <th>{{ user._id }}</th> 
+                    <th>{{ user._email }}</th> 
+                    <th>{{ user._role }}</th>
+                </tr>
             {% endfor %}
             </tr>
         </table>

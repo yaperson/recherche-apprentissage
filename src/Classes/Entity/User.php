@@ -6,6 +6,7 @@ class User {
     public $_id ;
     public $_email ;
     public $_password ;
+    public $_role ;
 
     public function __construct(array $ligne)
     {
@@ -40,7 +41,7 @@ class User {
      *
      * @return  self
      */ 
-    public function setId($_id)
+    public function setUser_id($_id)
     {
         $this->_id = $_id;
 
@@ -60,7 +61,7 @@ class User {
      *
      * @return  self
      */ 
-    public function setEmail($_email)
+    public function setUser_mail($_email)
     {
         $this->_email = $_email;
 
@@ -87,6 +88,26 @@ class User {
         return $this;
     }
 
+
+    /**
+     * Get the value of _role
+     */ 
+    public function getUser_role()
+    {
+        return $this->_role;
+    }
+
+    /**
+     * Set the value of _role
+     *
+     * @return  self
+     */ 
+    public function setUser_role($_role)
+    {
+        $this->_role = $_role;
+
+        return $this;
+    }
 }
 
 ?>
