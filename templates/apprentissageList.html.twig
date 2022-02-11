@@ -18,9 +18,11 @@
         <nav class="topnav" id="myTopnav">
             <a class="topnav__link" href="index.html">Home  {{ user._role }}</a>
             
-            {% if user._role == "admin" %}
+            {% for user in user  %}
+                {% if user._role == "admin" %}
                 <a class="topnav__link" href="userList.php">Gestion utilisateur</a>
-            {% endif %}
+                {% endif %}
+            {% endfor %}
             <a class="topnav__link" href="exportCsv.php">format .csv</a>
             <a class="topnav__link" href="addApprentissage.php">Ajouter a la liste</a>
             <a class="topnav__link" id="right" href="logout.php">| Logout</a>

@@ -32,7 +32,6 @@ if ((isset($_SESSION['connecter'] )) && ($_SESSION['connecter'] == true)) {
         $UserManager = new UserManager($db);
 
         $user = $UserManager->getOne();
-        var_dump($user);
         $apprentissage = $ApprentissageManager->getList();
 
     } catch(PDOException $e) {
