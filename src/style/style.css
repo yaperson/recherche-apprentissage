@@ -10,6 +10,12 @@ body{
     font-family: Arial, Helvetica, sans-serif;
 }
 
+footer {
+  bottom: 0;
+  position: absolute;
+  width: 100%;
+}
+
 /***********************************************/
 
 .topnav {

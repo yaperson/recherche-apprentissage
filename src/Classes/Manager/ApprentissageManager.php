@@ -37,10 +37,13 @@ class ApprentissageManager
         $stmt->execute();
     }
 
-    public function delete(Apprentissage $apprentissage) //:bool
+    public function deleteApprentissage(Apprentissage $id) //:bool
 
     {
-        // TODO
+        $stmt = $this->_db->prepare("DELETE FROM `apprentissage` WHERE id = ?;");
+        $stmt->bindParam(1, $id);
+
+        $stmt->execute();
     }
 
     public function update(Apprentissage $apprentissage) //:bool

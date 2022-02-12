@@ -19,7 +19,7 @@
             <a class="topnav__link" href="index.html">Home</a>
             <a class="topnav__link" href="#news">News</a>
             <a class="topnav__link" href="#contact">Contact</a>
-            <a class="topnav__link" id="right" href="connect.php">| Login</a>
+            <a class="topnav__link" id="right" href="connect.php">| Logout</a>
         </nav>
     </header>
     <main>
@@ -28,6 +28,7 @@
             <tr>
                 <th>id</th>
                 <th>email</th>
+                <th>rôle</th>
             </tr>
             <tr>
             {% for user in users %}
