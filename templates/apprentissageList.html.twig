@@ -24,7 +24,7 @@
                 {% endif %}
             {% endfor %}
             <a class="topnav__link" href="exportCsv.php">format .csv</a>
-            <a class="topnav__link" href="addApprentissage.php">Ajouter a la liste</a>
+            <a class="topnav__link" href="deleteApprentissage.php">Ajouter a la liste</a>
             <a class="topnav__link" id="right" href="../user/logout.php">| Logout</a>
         </nav>
     </header>
@@ -51,7 +51,10 @@
                     <th class="data">
                         {% for user in user  %}
                             {% if user._role == "admin" %}
-                                <a class="action_btn" href="deleteApprentissage.php">supprimer</a>
+                                <form method="POST" action="deleteApprentissage.php">
+                                    <input type="hidden" name="id" value="{{apprentissage._id}}">
+                                    <button class="action_btn" type="submit">supprimer</button>
+                                </form>
                             {% endif %}
                         {% endfor %}
                     </th>

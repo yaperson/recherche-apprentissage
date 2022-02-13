@@ -7,11 +7,9 @@ use Twig\Loader\FilesystemLoader;
 use Twig\Environment;
 use App\Classes\Manager\ApprentissageManager;
 
-$logger = new Logger('main');
+$logger = new Logger('new opportunity');
 
-$logger->pushHandler(new StreamHandler(__DIR__.'/../../../log/app.log', Logger::DEBUG));  // création anonyme
-
-$logger->info('Start...');
+$logger->pushHandler(new StreamHandler(__DIR__.'/../../../log/app.log', Logger::INFO));  // création anonyme
 
 $loader = new FilesystemLoader('../../../templates');
 
@@ -29,6 +27,9 @@ if ((isset($_SESSION['connecter'] )) && ($_SESSION['connecter'] == true)) {
             $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
             $newOpportunity = new ApprentissageManager($db); //entreprise, contact, lieux, poste, teletravail, candidature
             $newOpportunity->addApprentissage($_POST['entreprise'], $_POST['contact'], $_POST['lieux'], $_POST['poste'], $_POST['teletravail'], $_POST['candidature']);
+
+            $logger->info('Add opportunity in database' , [ 'user ID : ' . $_SESSION['user_id'] , 'Opportunity name : ' . $_POST['poste'] ]);
+
             header('Location: apprentissageList.php');
         }
     } catch(PDOException $e) {

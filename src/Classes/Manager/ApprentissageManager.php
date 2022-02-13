@@ -37,7 +37,7 @@ class ApprentissageManager
         $stmt->execute();
     }
 
-    public function deleteApprentissage(Apprentissage $id) //:bool
+    public function deleteApprentissage($id) //:bool
 
     {
         $stmt = $this->_db->prepare("DELETE FROM `apprentissage` WHERE id = ?;");
@@ -56,7 +56,7 @@ class ApprentissageManager
     {
         $apprentissageList = array();
 
-        $request = $this->_db->query('SELECT entreprise, contact, lieux, poste, teletravail, candidature FROM apprentissage;');
+        $request = $this->_db->query('SELECT id, entreprise, contact, lieux, poste, teletravail, candidature FROM apprentissage;');
         while ($ligne = $request->fetch(PDO::FETCH_ASSOC)) {
             $apprentissage = new Apprentissage($ligne);
             $apprentissageList[] = $apprentissage;

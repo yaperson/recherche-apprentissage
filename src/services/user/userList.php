@@ -13,8 +13,6 @@ $logger = new Logger('main');
 
 $logger->pushHandler(new StreamHandler(__DIR__.'../../../log/app.log', Logger::DEBUG));  // création anonyme
 
-$logger->info('Start...');
-
 $loader = new FilesystemLoader('../../../templates');
 
 $twig = new Environment($loader, ['cache' => '../../../cache']);
