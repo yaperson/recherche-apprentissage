@@ -2,7 +2,7 @@
 session_start();
 $_SESSION["connecter"] = FALSE;
 
-require_once '../vendor/autoload.php';
+require_once '../../../vendor/autoload.php';
 
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
@@ -10,19 +10,17 @@ use Twig\Loader\FilesystemLoader;
 use Twig\Environment;
 use App\Classes\Manager\UserManager;
 
-$logger = new Logger('main');
+$logger = new Logger('connect');
 
-$logger->pushHandler(new StreamHandler(__DIR__.'/../log/app.log', Logger::DEBUG));  // création anonyme
+$logger->pushHandler(new StreamHandler(__DIR__.'/../../../log/app.log', Logger::INFO));  // création anonyme
 
-$logger->info('Start...');
+$loader = new FilesystemLoader('../../../templates');
 
-$loader = new FilesystemLoader('../templates');
-
-$twig = new Environment($loader, ['cache' => '../cache']);
+$twig = new Environment($loader, ['cache' => '../../../cache']);
 
 $error = '';
 
-require_once("conf.php");
+require_once("../../conf.php");
 
 try {
     if (isset($_POST['email'])&&(isset($_POST['password']))){
@@ -30,14 +28,21 @@ try {
         $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
         $newuser = new UserManager($db);
         $password = $_POST['password'];
+        $user = $_POST['email'];
         // $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
-        $newuser->connectUser($_POST['email'], $password);
-    }    
+        $newuser->connectUser($user, $password);
+
+        $logger->info('New connection from ', ['user : '.$user => ' IP [ '.$newuser->getIp() . ']']);
+
+    }
 } catch(PDOException $e) {
     print('erreur de connection : ' . $e->getMessage());
+
+    $logger->warning('Connection problem from', [$user => $newuser->getIp()]);
 }     
 echo $twig->render('connect.html.twig', [
     'title' => 'Connectez vous !!!!!!!!',
     'error' => $error,
     ]
 );    
+

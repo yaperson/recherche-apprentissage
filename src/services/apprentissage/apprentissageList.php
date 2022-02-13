@@ -1,5 +1,5 @@
 <?php
-require_once '../vendor/autoload.php';
+require_once '../../../vendor/autoload.php';
 
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
@@ -11,17 +11,17 @@ use App\Classes\Entity\User;
 
 $logger = new Logger('main');
 
-$logger->pushHandler(new StreamHandler(__DIR__.'/../log/app.log', Logger::DEBUG));  // création anonyme
+$logger->pushHandler(new StreamHandler(__DIR__.'/../../../log/app.log', Logger::DEBUG));  // création anonyme
 
 $logger->info('Start...');
 
-$loader = new FilesystemLoader('../templates');
+$loader = new FilesystemLoader('../../../templates');
 
-$twig = new Environment($loader, ['cache' => '../cache']);
+$twig = new Environment($loader, ['cache' => '../../../cache']);
 
 $error = '';
 
-require_once("conf.php");
+require_once("../../conf.php");
 
 session_start();
 if ((isset($_SESSION['connecter'] )) && ($_SESSION['connecter'] == true)) {

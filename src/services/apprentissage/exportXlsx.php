@@ -1,5 +1,5 @@
 <?php
-require_once '../vendor/autoload.php';
+require_once '../../../vendor/autoload.php';
 
 // create a header style
 $headerStyle = (new \OneSheet\Style\Style())
@@ -22,17 +22,7 @@ $dataStyle2 = (new \OneSheet\Style\Style())
 $dummyHeader = array('Strings', 'Ints', 'Floats', 'Dates', 'Times', 'Uids');
 
 // prepare some dummy data
-$dummyData = array();
-for ($i = 1; $i <= 100; $i++) {
-    $dummyData[] = array(
-        substr(md5(microtime()), rand(11,22)),
-        rand(333,333333),
-        microtime(1),
-        date(DATE_RSS, time() + $i*60*60*24),
-        date('H:i:s', time() + $i),
-        uniqid(null, 1)
-    );
-}
+
 
 // create new OneSheet instance
 $onesheet = new \OneSheet\Writer();

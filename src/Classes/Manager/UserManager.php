@@ -57,7 +57,7 @@ class UserManager
                     echo 'Le mot de passe est valide !';
                     $_SESSION['connecter'] = true;
                     $_SESSION['user_id'] = $ligne['user_id'];
-                    header('Location: apprentissageList.php');
+                    header('Location: ../apprentissage/apprentissageList.php');
                 } else {
                     session_destroy();
                     echo '<div class="error">Le mot de passe est invalide.</div>';
@@ -92,6 +92,17 @@ class UserManager
         }
         return $userList;
     }
+    function getIp(){
+        if(!empty($_SERVER['HTTP_CLIENT_IP'])){
+          $ip = $_SERVER['HTTP_CLIENT_IP'];
+        }elseif(!empty($_SERVER['HTTP_X_FORWARDED_FOR'])){
+          $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        }else{
+          $ip = $_SERVER['REMOTE_ADDR'];
+        }
+        return $ip;
+    }
+    
 }
 
 

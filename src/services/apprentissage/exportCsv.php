@@ -1,7 +1,7 @@
 <?php
 header('Content-Type: text/csv;');
 header('Content-Disposition: attachment; filename="Liste-candidature.csv"');
-include('conf.php');
+require_once("../../conf.php");
 
 try {
     $db = new PDO($dsn, $usr, $pwd);
