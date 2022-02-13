@@ -5,7 +5,6 @@
 
 .main__title{
     display: flex;
-    flex-direction: column;
     justify-content: center;
     height: 100vh;
 }
@@ -18,12 +17,43 @@
 h3{
     font-size: 5rem;
 }
+#title {
+    color: #F15025;
+    margin-top: 10%;
+    position: absolute;
+    z-index: 2;
+}
 
 .vaisseau-spatial {
     max-width: 300px;
 }
 #vaisseau-spatial {
-    top: 0px;
+    margin-top: 500px;
+    position: absolute;
+}
+
+.espace {
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+#espace {
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+}
+
+.content {
+    background-color: #191919;
+    padding: 10px;
+    margin-top: 50px;
+    color: white;
+}
+
+#footer-navbar {
+    background-color: #191919;
+    color: white;
 }
 
 @media screen and (max-width: 750px) {

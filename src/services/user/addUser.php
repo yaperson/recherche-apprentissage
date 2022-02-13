@@ -26,7 +26,7 @@ if ((isset($_SESSION['connecter'] )) && ($_SESSION['connecter'] == true)) {
             $db = new PDO($dsn, $usr, $pwd);
             $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
             $newuser = new UserManager($db);
-            $email = $_POST['email'];
+            $email = htmlspecialchars($_POST['email'], ENT_QUOTES);
             $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
             $newuser->addUser($email, $password);
 

@@ -27,8 +27,8 @@ try {
         $db = new PDO($dsn, $usr, $pwd);
         $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
         $newuser = new UserManager($db);
-        $password = $_POST['password'];
-        $user = $_POST['email'];
+        $password = htmlspecialchars($_POST['password'], ENT_QUOTES);
+        $user = htmlspecialchars($_POST['email'], ENT_QUOTES);
         // $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
         $newuser->connectUser($user, $password);
 
