@@ -37,6 +37,11 @@ footer {
     font-size: 17px;
     transition: 0.2s;
   }
+  .topnav__icons {
+    float: left;
+    padding: 5px;
+    transition: 0.2s;
+  }
   #right {
     float: right;
     padding-right: 2%;

@@ -11,8 +11,12 @@
     max-width: 100%;
 }
 .form-control {
-    padding-right: 80px;
+    padding-right: 80px ;
     height: 30px;
+    border: 1px solid #ddd;
+    color: rgb(112, 112, 112);
+    border-radius: 5px;
+    box-shadow: inset 0px 1px 5px rgba(0,0,0,0.3); 
 }
 .btn {
     font-size: large;
@@ -21,8 +25,23 @@
     padding: 20px;
     border: none;
     background-color: #F15025;
+    border-radius: 50px;
     color: white;
 }
 textarea {
-    height: 40px;
+    padding-right: 80px ;
+    height: 30px;
+    border: 1px solid #ddd;
+    color: rgb(112, 112, 112);
+    border-radius: 5px;
+    box-shadow: inset 0px 1px 5px rgba(0,0,0,0.3);  
+}
+
+select {
+    padding-right: 80px ;
+    height: 30px;
+    border: 1px solid #ddd;
+    color: rgb(0, 0, 0);
+    border-radius: 5px;
+    box-shadow: inset 0px 1px 5px rgba(0,0,0,0.3);  
 }

@@ -15,12 +15,13 @@
         <div class="error">{{error}}</div>    
     {% endif %}
     <header>
-        <nav class="topnav" id="myTopnav">
+        <nav class="topnav" id="topnav">
             <a class="topnav__link" href="../../index.html">Home  {{ user._role }}</a>
             
             {% for user in user  %}
                 {% if user._role == "admin" %}
                 <a class="topnav__link" href="../user/userList.php">Gestion utilisateur</a>
+                <a class="topnav__link" href="../admin/readLogs.php">Télécharcher les logs</a>
                 {% endif %}
             {% endfor %}
             <a class="topnav__link" href="exportCsv.php">format .csv</a>
