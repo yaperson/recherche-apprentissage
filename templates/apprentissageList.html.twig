@@ -56,6 +56,10 @@
                                     <input type="hidden" name="id" value="{{apprentissage._id}}">
                                     <button class="action_btn" type="submit">supprimer</button>
                                 </form>
+                                <form method="GET" action="updateApprentissage.php">
+                                    <input type="hidden" name="id" value="{{apprentissage._id}}">
+                                    <button class="action_btn" type="submit">modifier</button>
+                                </form>
                             {% endif %}
                         {% endfor %}
                     </th>

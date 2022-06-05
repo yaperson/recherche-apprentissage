@@ -46,10 +46,16 @@ class ApprentissageManager
         $stmt->execute();
     }
 
-    public function update(Apprentissage $apprentissage) //:bool
+    public function updateApprentissage($entreprise, $contact, $lieux, $poste, $teletravail, $candidature) //:bool
 
-    {
-        // TODO
+    {        
+        $stmt = $this->_db->prepare("UPDATE apprentissage (entreprise, contact, lieux, poste, teletravail, candidature) VALUE (?, ?, ?, ?, ?, ?);");
+        $stmt->bindParam(1, $entreprise);
+        $stmt->bindParam(2, $contact);
+        $stmt->bindParam(3, $lieux);
+        $stmt->bindParam(4, $poste);
+        $stmt->bindParam(5, $teletravail);
+        $stmt->bindParam(6, $candidature);
     }
 
     public function getList(): array
@@ -57,6 +63,22 @@ class ApprentissageManager
         $apprentissageList = array();
 
         $request = $this->_db->query('SELECT id, entreprise, contact, lieux, poste, teletravail, candidature FROM apprentissage;');
+        while ($ligne = $request->fetch(PDO::FETCH_ASSOC)) {
+            $apprentissage = new Apprentissage($ligne);
+            $apprentissageList[] = $apprentissage;
+        }
+        return $apprentissageList;
+    }
+
+    public function getOne(): array
+    {
+        $apprentissageList = array();
+        $apprentissage_id = $_GET['id'];
+        $request = $this->_db->prepare('SELECT id, entreprise, contact, lieux, poste, teletravail, candidature FROM apprentissage WHERE id = ?;');
+
+        $request->bindParam(1, $apprentissage_id);
+        $request->execute();
+
         while ($ligne = $request->fetch(PDO::FETCH_ASSOC)) {
             $apprentissage = new Apprentissage($ligne);
             $apprentissageList[] = $apprentissage;
